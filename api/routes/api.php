@@ -20,8 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::controller(MovieController::class)->group(function () {
     route::get('movies', 'index');
-    route::post('movie', 'store');
     route::get('movie/{id}', 'show');
-    route::put('movie{id}', 'update');
-    route::delete('movide{id}','destroy');
+    route::post('movie', 'store');
+    route::put('movie/{id}', 'update');
+    route::delete('movie/{id}', 'destroy');
 });
