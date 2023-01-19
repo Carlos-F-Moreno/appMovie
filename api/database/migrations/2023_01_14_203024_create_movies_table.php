@@ -19,6 +19,7 @@ class CreateMoviesTable extends Migration
             $table->text('descripcion');
             $table->date('fecha_de_estreno');
             $table->string('portada');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
