@@ -37,9 +37,7 @@ Route::controller(UserController::class)->group(function () {
 
 
 Route::controller(CommentController::class)->group(function () {
-    route::post('comment', 'index');
-    route::get('coment/{movie_id}', 'show');
-    route::post('masde', 'store');
-    route::put('movasdie/{id}', 'update');
-    route::delete('movasdie/{id}', 'destroy');
+    route::post('comment', 'store');
+    route::middleware('auth:sanctum')->get('comments/{movie_id}', 'show');
+    route::delete('comment/{id}', 'destroy');
 });
