@@ -24,6 +24,7 @@ class MovieController extends Controller
         $movie->portada = $request->portada;
 
         $movie->save();
+        return $movie;
     }
 
     public function show($id)
