@@ -38,7 +38,10 @@ class CommentController extends Controller
     }
 
     public function destroy($id)
-    {
+    {   
+        $comment = Comment::findORFail($id);
+        $comment->delete();
+        return response()->json(['message'=>'Comentario Eliminado']);
 
     }
 }
