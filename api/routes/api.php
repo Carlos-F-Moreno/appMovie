@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +26,20 @@ Route::controller(MovieController::class)->group(function () {
     route::post('movie', 'store');
     route::put('movie/{id}', 'update');
     route::delete('movie/{id}', 'destroy');
+});
+
+Route::controller(UserController::class)->group(function () {
+    route::post('login', 'login');
+    route::post('register', 'register');
+    route::delete('user/{id}', 'destroy');
+    Route::middleware('auth:sanctum')->get('logout', 'logout');
+});
+
+
+Route::controller(CommentController::class)->group(function () {
+    route::post('comment', 'index');
+    route::get('coment/{movie_id}', 'show');
+    route::post('masde', 'store');
+    route::put('movasdie/{id}', 'update');
+    route::delete('movasdie/{id}', 'destroy');
 });
