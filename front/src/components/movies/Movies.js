@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export function Movies() {
     const [movies, setMovies] = useState([]);
@@ -23,31 +24,33 @@ export function Movies() {
         return response.data;
     }
     return (
-        <div className="album py-5">
-            <div className="container" >
-                <div className="row justify-content-center align-items-center g-2">
-                    {
-                        movies.map((movie) =>
+        <div className="container bg-light p-5">
 
-                            <div className="col-md-4" key={movie.id}>
-                                <div className="card mb-4 shadow-sm">
-                                    <img className="bd-placeholder-img card-img-top" src={movie.portada} alt="portada de la pelicula"></img>
-                                    <div className="card-body">
-                                        <h5 className="card-title">{movie.titulo}</h5>
-                                        <p className="card-text">{movie.descripcion}</p>
-                                        <div className="d-flex justify-content-between aling-item-center">
-                                            <div className="gtn-group">
-                                                <button className="btn btn-primary" onClick={() => { deleteMovie(movie.id) }}>
-                                                    Delete
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>)
-                    }
-                </div>
-            </div>
+
+            <h1 className="my-4 fs-2">Movies
+            </h1>
+
+            {
+                movies.map((movie) =>
+                    <div className="row" key={movie.id}>
+        
+                        <div className="col-md-7 ">
+                            
+                                <img className="img-fluid rounded mb-3 mb-md-0" src={movie.portada} alt="portada" />
+                            
+                        </div>
+                        <div className="col-md-5">
+                            <h3>{movie.titulo}</h3>
+                            <p>{movie.descripcion}</p>
+                            <button className="btn btn-primary" onClick={()=>{deleteMovie(movie.id)}}>Delete</button>
+                            <Link className="btn btn-primary m-2" to={`/movie/${movie.id}`}>Edit</Link>
+                        </div>
+                        <hr />
+                    </div>
+        
+                    )
+            }
         </div>
+
     );
 }
